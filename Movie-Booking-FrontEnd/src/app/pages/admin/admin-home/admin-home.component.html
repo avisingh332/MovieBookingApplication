@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="row">
+        <div class="d-flex justify-content-between mt-3 mb-3">
+            <div><button class="btn btn-dark">Add-Movies</button></div>
+            <div>
+                <input type="date" [(ngModel)]="selectedDate" class="form-control bg-dark text-white">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        
+            <!-- <div style="width:100px; height:100px;" class="bg-danger m-2">
+        </div> -->
+            <div *ngFor="let movie of movies; let i= index" class="d-flex flex-row 
+                mb-3 border border-2 p-4 rounded-5">
+                <!-- movie image and Description -->
+                <div class="d-flex flex-row">
+                    <!-- image -->
+                    <div style="overflow: hidden;height: 200px; width: 400px;">
+                        <img style="object-fit: contain;" height="200px" src="https://via.placeholder.com/200x200"
+                            alt="Card image cap" class="border rounded-3">
+                    </div>
+                    <!-- Details -->
+                    <div class="d-flex flex-column ms-2">
+                        <h5>Movie Name: {{ movie.name }}</h5>
+                        <p><strong>Director</strong>: {{ movie.director }}</p>
+                        <p><strong>Description</strong>: {{ movie.description }}</p>
+                    </div>
+                </div>
+
+                <!-- Show Lists -->
+                <div class="d-flex flex-column ms-0">
+                    <h4>Shows</h4>
+                    <div class="show-timings">
+                        <div class="show-box" *ngFor="let timing of movie.showTimings">
+                            {{timing}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+    </div>
+
+</div>

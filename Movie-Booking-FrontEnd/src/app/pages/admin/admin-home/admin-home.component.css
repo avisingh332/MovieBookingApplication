@@ -1,0 +1,29 @@
+
+  
+.show-timings {
+display: flex;              /* Use flexbox for layout */
+/* flex-wrap: wrap;           Allow boxes to wrap if needed */
+width: 300px;              /* Set specific width */
+height: 150px;             /* Set specific height */
+/* border: 2px solid #ccc;    Border around the container */
+/* border-radius: 10px;       Rounded corners */
+padding: 10px;             /* Padding inside the container */
+justify-content: center;    /* Center align boxes */    
+align-items: center;        /* Center align boxes vertically */
+}
+
+.show-box {
+background-color: #007bff; /* Bootstrap primary color */
+color: white;               /* Text color */
+padding: 10px 10px;         /* Padding inside each box */
+margin: 5px;                /* Space between boxes */
+border-radius: 5px;        /* Rounded corners for boxes */
+text-align: center;         /* Center text */
+width: 90px;                /* Fixed width for boxes */
+box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Box shadow */
+transition: transform 0.2s; /* Transition effect for hover */
+}
+
+.show-box:hover {
+transform: scale(1.05);    /* Slightly scale up on hover */
+}
