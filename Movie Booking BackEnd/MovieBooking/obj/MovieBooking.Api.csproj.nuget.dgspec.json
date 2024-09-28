@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\avinashsingh01\\source\\repos\\MovieBooking\\MovieBooking\\MovieBooking.Api.csproj": {}
+    "C:\\Users\\avinashsingh01\\source\\repos\\MovieBooking\\Movie Booking BackEnd\\MovieBooking\\MovieBooking.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\avinashsingh01\\source\\repos\\MovieBooking\\MovieBooking\\MovieBooking.Api.csproj": {
+    "C:\\Users\\avinashsingh01\\source\\repos\\MovieBooking\\Movie Booking BackEnd\\MovieBooking\\MovieBooking.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\avinashsingh01\\source\\repos\\MovieBooking\\MovieBooking\\MovieBooking.Api.csproj",
+        "projectUniqueName": "C:\\Users\\avinashsingh01\\source\\repos\\MovieBooking\\Movie Booking BackEnd\\MovieBooking\\MovieBooking.Api.csproj",
         "projectName": "MovieBooking.Api",
-        "projectPath": "C:\\Users\\avinashsingh01\\source\\repos\\MovieBooking\\MovieBooking\\MovieBooking.Api.csproj",
+        "projectPath": "C:\\Users\\avinashsingh01\\source\\repos\\MovieBooking\\Movie Booking BackEnd\\MovieBooking\\MovieBooking.Api.csproj",
         "packagesPath": "C:\\Users\\avinashsingh01\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\avinashsingh01\\source\\repos\\MovieBooking\\MovieBooking\\obj\\",
+        "outputPath": "C:\\Users\\avinashsingh01\\source\\repos\\MovieBooking\\Movie Booking BackEnd\\MovieBooking\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\avinashsingh01\\AppData\\Roaming\\NuGet\\NuGet.Config",
