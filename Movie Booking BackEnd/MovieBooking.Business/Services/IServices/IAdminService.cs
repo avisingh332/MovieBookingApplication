@@ -12,6 +12,6 @@ namespace MovieBooking.Business.Services.IServices
     public interface IAdminService
     {
         Task<MovieCreateResponseDto> AddMovie(MovieCreateRequestDto request);
-        Task<ShowCreateResponseDto> AddShow(ShowCreateRequestDto request);
+        Task<ShowResponseDto> AddShow(ShowCreateRequestDto request);
     }
 }

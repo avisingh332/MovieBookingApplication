@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Identity;
 using MovieBooking.Business.Dtos.RequestDtos;
 using MovieBooking.Business.Dtos.ResponseDtos;
 using MovieBooking.Business.Services.IServices;
@@ -30,13 +31,14 @@ namespace MovieBooking.Business.Services
             if (user != null && await _userManager.CheckPasswordAsync(user, loginRequest.Password))
             {
                 var roles = await _userManager.GetRolesAsync(user);
-                var token = _jwtTokenGenerator.GenerateToken(user, roles);
+                var token = _jwtTokenGenerator.GenerateToken(user, roles.ToList());
                 loginResponse = new LoginResponseDto
                 {
                     UserId = user.Id,
                     Name = user.Name,
                     Email = user.Email,
                     JwtToken = token,
+                    Roles = roles.ToList(),
                     ExpiresIn = DateTime.UtcNow.AddDays(1),
                 };
             }

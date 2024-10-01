@@ -53,23 +53,29 @@ namespace MovieBooking.Business.Services
             }
         }
 
-        public async Task<ShowCreateResponseDto> AddShow(ShowCreateRequestDto request)
+        public async Task<ShowResponseDto> AddShow(ShowCreateRequestDto request)
         {
             var id = Guid.NewGuid();
+            TimeSpan startTime;
+            TimeSpan.TryParse(request.StartTime, out startTime);
+            TimeSpan endTime;
+            TimeSpan.TryParse(request.EndTime, out endTime);
             Show show = new Show
             {
                 Id = id,
-                StartDate = request.StartDate,
-                EndDate = request.EndDate,
+                StartDate =  request.StartDate.ToDateTime(TimeOnly.MinValue),
+                EndDate = request.EndDate.ToDateTime(TimeOnly.MinValue),
                 ScreenNo = request.ScreenNo,
                 MovieId = request.MovieId,
                 NoOfSeats = request.NoOfSeats,
+                StartTime =startTime, 
+                EndTime =endTime,
             };
             try
             {
                 await _showRepo.AddAsync(show);
                 Show showAdded = await _showRepo.GetAsync(show => show.Id == id) ?? throw new ApplicationException("Show Was Not Added!!! ");
-                ShowCreateResponseDto response = new ShowCreateResponseDto
+                ShowResponseDto response = new ShowResponseDto
                 {
                     Id = showAdded.Id,
                     StartDate = DateOnly.FromDateTime(showAdded.StartDate),
@@ -77,6 +83,8 @@ namespace MovieBooking.Business.Services
                     ScreenNo = showAdded.ScreenNo,
                     MovieId = showAdded.MovieId,
                     NoOfSeats = showAdded.NoOfSeats,
+                    StartTime = showAdded.StartTime, 
+                    EndTime = showAdded.EndTime,
                 };
                 return response;
             }

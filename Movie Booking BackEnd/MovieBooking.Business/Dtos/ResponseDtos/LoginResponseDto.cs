@@ -13,5 +13,6 @@ namespace MovieBooking.Business.Dtos.ResponseDtos
         public string Email { get; set; }
         public string JwtToken { get; set; }
         public DateTime ExpiresIn { get; set; }
+        public List<string> Roles { get; set; }
     }
 }

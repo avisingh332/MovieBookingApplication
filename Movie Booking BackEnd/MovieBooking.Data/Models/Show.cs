@@ -23,6 +23,12 @@ namespace MovieBooking.Data.Models
 
         [Required]
         public DateTime EndDate { get; set; }
+
+        [Required]
+        public TimeSpan StartTime { get; set; }
+
+        [Required]
+        public TimeSpan EndTime { get; set; }
         //Navigation Property 
         public virtual Movie Movie { get; set; }
 

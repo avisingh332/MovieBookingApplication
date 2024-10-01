@@ -11,6 +11,6 @@ namespace MovieBooking.Business.Services.IServices
     public interface IUserService
     {
         Task<IEnumerable<MovieGetResponseDto>> GetAllMoviesAsync(DateOnly? showDate = null);
-        Task<IEnumerable<ShowGetResponseDto>> GetAllShowsAsync(DateOnly? showDate = null, Guid? movieId = null);
+        Task<IEnumerable<ShowResponseDto>> GetAllShowsAsync(DateOnly? showDate = null, Guid? movieId = null);
     }
 }

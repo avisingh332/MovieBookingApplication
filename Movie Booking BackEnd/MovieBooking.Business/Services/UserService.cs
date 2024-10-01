@@ -45,7 +45,7 @@ namespace MovieBooking.Business.Services
             }).ToList();
         }
 
-        public async Task<IEnumerable<ShowGetResponseDto>> GetAllShowsAsync(DateOnly? showDate = null, Guid? movieId = null)
+        public async Task<IEnumerable<ShowResponseDto>> GetAllShowsAsync(DateOnly? showDate = null, Guid? movieId = null)
         {
            
             Expression<Func<Show, bool>> filter = show =>
@@ -55,7 +55,7 @@ namespace MovieBooking.Business.Services
             // Use GetAllAsync with the filter
             IEnumerable<Show> shows = await _showRepo.GetAllAsync(filter);
 
-            return shows.Select(s => new ShowGetResponseDto
+            return shows.Select(s => new ShowResponseDto
             {
                 Id = s.Id,
                 MovieId = s.MovieId,
@@ -63,6 +63,8 @@ namespace MovieBooking.Business.Services
                 NoOfSeats = s.NoOfSeats,
                 StartDate = DateOnly.FromDateTime(s.StartDate),
                 EndDate = DateOnly.FromDateTime(s.EndDate),
+                StartTime = s.StartTime, 
+                EndTime = s.EndTime,
             }).ToList();
         }
     }

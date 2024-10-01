@@ -56,7 +56,7 @@ namespace MovieBooking.Data
                          Name = "User 2",
                          UserName = "user2@test.com",
                          NormalizedUserName = "user2@test.com".ToUpper(),
-                         Email = "user2@test.com",
+                         Email = "user2@test.com",  
                          NormalizedEmail = "user2@test.com".ToUpper(),
                          PasswordHash = hasher.HashPassword(null, "string")
                      }

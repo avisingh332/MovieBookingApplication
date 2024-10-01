@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MovieBooking.Business.Dtos.ResponseDtos
 {
-    public class ShowCreateResponseDto
+    public class ShowResponseDto
     {
         public Guid Id { get; set; }
         public Guid MovieId { get; set; }
@@ -14,6 +14,7 @@ namespace MovieBooking.Business.Dtos.ResponseDtos
         public DateOnly EndDate { get; set; }
         public int ScreenNo { get; set; }
         public int NoOfSeats { get; set; }
-        public TimeOnly ShowTiming { get; set; }
+        public TimeSpan StartTime { get; set; }
+        public TimeSpan EndTime { get; set; }
     }
 }

@@ -18,8 +18,7 @@ namespace MovieBooking.Data.Repository
         }
         public async Task<IEnumerable<Movie>> GetMoviesByShowDateAsync(DateOnly givenDate)
         {
-            DateTime givenDateWithTime = givenDate.ToDateTime(TimeOnly.MinValue);
-
+            var givenDateWithTime = givenDate.ToDateTime(TimeOnly.MinValue);
             var movieIds = await _db.Shows
               .Where(s => s.StartDate <= givenDateWithTime &&
                           s.EndDate >= givenDateWithTime)

@@ -40,7 +40,7 @@ namespace MovieBooking.Api.Controllers
 
             try
             {
-                ShowCreateResponseDto response = await _adminService.AddShow(request);
+                ShowResponseDto response = await _adminService.AddShow(request);
 
                 return Created($"/api/Movie/{response.Id}", new ResponseDto
                 {
@@ -64,7 +64,7 @@ namespace MovieBooking.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<ResponseDto>> GetAllAsync([FromQuery] Guid? movieId=null, [FromQuery]DateOnly? showDate=null)
         {
-            IEnumerable<ShowGetResponseDto> shows =await  _userService.GetAllShowsAsync(showDate, movieId);
+            IEnumerable<ShowResponseDto> shows =await  _userService.GetAllShowsAsync(showDate, movieId);
             return Ok(new ResponseDto
             {
                 IsSuccess = true,

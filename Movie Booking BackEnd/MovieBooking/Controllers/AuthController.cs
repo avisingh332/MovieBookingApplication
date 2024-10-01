@@ -16,6 +16,7 @@ namespace MovieBooking.Api.Controllers
             _authservice = authService;
         }
         [HttpPost]
+        [Route("Login")]
         public async Task<ActionResult<ResponseDto>> Login([FromBody] LoginRequestDto loginRequest)
         {
             ResponseDto response = null;

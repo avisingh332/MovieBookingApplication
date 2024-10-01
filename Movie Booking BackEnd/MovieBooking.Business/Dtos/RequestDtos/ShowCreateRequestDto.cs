@@ -9,9 +9,11 @@ namespace MovieBooking.Business.Dtos.RequestDtos
     public class ShowCreateRequestDto
     {
         public Guid MovieId { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateOnly StartDate { get; set; }
+        public DateOnly EndDate { get; set; }
         public int ScreenNo { get; set; }
         public int NoOfSeats { get; set; }
+        public string StartTime { get; set; }
+        public string EndTime { get; set; }
     }
 }
