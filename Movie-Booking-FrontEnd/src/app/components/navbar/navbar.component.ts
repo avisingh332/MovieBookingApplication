@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/generic.model';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -9,27 +10,19 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
-  isLogin:boolean = true;
-  userDetails:any|null;
-  searchForm:FormGroup;
+  
+  user:User|undefined;
 
   constructor(private authService: AuthService, private router:Router, private fb:FormBuilder) {
-    console.log("Into navbar component !!!!!");
-    this.searchForm = fb.group({
-      searchQuery:['']
-    });
+  
   }
 
   ngOnInit(): void {
-    // console.log("Ng Onit of home page Runs");
-    this.authService.userDetails$.subscribe(details=>{
-      if(details ==null) this.isLogin=false;
-      else {
-        this.isLogin = true;
-        this.userDetails= details;
-      }
-    })
+    this.authService.user$().subscribe(user=>{
+      this.user = user;
+      console.log("user is: ", user);
+    });
+    this.user = this.authService.getUser();
   }
 
   logout(){

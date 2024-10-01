@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { ShowCreateRequest } from 'src/app/models/request.model';
+import { MovieService } from 'src/app/services/movie.service';
+import { ShowService } from 'src/app/services/show.service';
 
 @Component({
   selector: 'app-add-movies',
@@ -7,18 +10,24 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./add-movies.component.css']
 })
 export class AddMoviesComponent implements OnInit {
-  moviesForm:FormGroup;
-  constructor(private fb: FormBuilder) {
+
+
+  moviesForm: FormGroup;
+  constructor(private fb: FormBuilder, private showService: ShowService,
+    private movieService: MovieService) {
+    console.log("into constructor of add movies")
     this.moviesForm = fb.group({
-      name:[''], 
-      directorName:[''],
-      genre:[''],
-      description:[''],
-      shows: this.fb.array([])    
+      name: [''],
+      director: [''],
+      genre: [''],
+      description: [''],
+      shows: this.fb.array([])
     });
     this.addShow();
   }
 
+  ngOnInit(): void {
+  }
   get shows(): FormArray {
     return this.moviesForm.get('shows') as FormArray;
   }
@@ -27,7 +36,10 @@ export class AddMoviesComponent implements OnInit {
     const showGroup = this.fb.group({
       startDate: [''],
       endDate: [''],
-      timing: ['']
+      startTime:[''], 
+      endTime:[''], 
+      screenNo:[1], 
+      noOfSeats:[100],
     });
     this.shows.push(showGroup); // Add a new show group to the FormArray
   }
@@ -35,8 +47,37 @@ export class AddMoviesComponent implements OnInit {
   removeShow(index: number) {
     this.shows.removeAt(index); // Remove a show group from the FormArray
   }
-  ngOnInit(): void {
-    this
+
+
+  handleSubmit() {
+   let {shows,...movie} = this.moviesForm.value;
+
+  //  console.log("shows: ", shows);
+  //  console.log("Movie: ", movie);
+
+   this.movieService.addMovie(movie).subscribe({
+    next:(resp)=>{
+      console.log(resp, " Movie Added Successfully!!!");
+      
+
+      shows = shows.map((show:ShowCreateRequest)=> {
+        return { ...show, movieId: resp.id }; // Use : instead of =
+      });
+
+      this.showService.addShows(shows).subscribe({
+        next:(resp)=>{
+          console.log(resp);
+        },
+        error:(err)=>{
+          console.log(err);
+        }
+       })
+    },
+    error:(err)=>{
+      console.log(err);
+    }
+   });
+   
   }
 
 }

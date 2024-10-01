@@ -7,8 +7,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { AdminHomeComponent } from './pages/admin/admin-home/admin-home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AddMoviesComponent } from './pages/admin/add-movies/add-movies.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserHomeComponent } from './pages/user/user-home/user-home.component';
+import { LoginComponent } from './pages/global/login/login.component';
+import { MovieComponent } from './pages/user/movie/movie.component';
 
 @NgModule({
   declarations: [
@@ -16,11 +18,14 @@ import { UserHomeComponent } from './pages/user/user-home/user-home.component';
     NavbarComponent,
     AdminHomeComponent,
     AddMoviesComponent,
-    UserHomeComponent
+    UserHomeComponent,
+    LoginComponent,
+    MovieComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
   ],

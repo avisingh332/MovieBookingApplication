@@ -1,39 +1,54 @@
 <div class="container">
     <h2>Add New Movies</h2>
-    <form action="">
+    <form [formGroup]="moviesForm" action="" (submit)="handleSubmit()">
         <div class="mb-3">
-            <label for="movieName" class="form-label">Movie Name</label>
-            <input type="text" class="form-control" id="movieName" />
+            <label for="name" class="form-label">Movie Name</label>
+            <input type="text" formControlName = "name" class="form-control" id="name" />
         </div>
         <div class="mb-3">
-            <label for="movieName" class="form-label">Director Name</label>
-            <input type="text" class="form-control" id="movieName" />
-        </div>
-
-        <div class="mb-3">
-            <label for="movieName" class="form-label">Genre</label>
-            <input type="textarea" class="form-control" id="movieName" />
+            <label for="director" class="form-label">Director Name</label>
+            <input type="text" formControlName = "director" class="form-control" id="director" />
         </div>
 
         <div class="mb-3">
-            <label for="movieName" class="form-label">Description</label>
-            <textarea type="textarea" class="form-control" id="movieName" ></textarea>
+            <label for="genre" class="form-label">Genre</label>
+            <input type="textarea" formControlName = "genre" class="form-control" id="genre" />
         </div>
+
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea type="textarea" formControlName = "description" class="form-control" id="description" ></textarea>
+        </div>
+
+       
 
         <h2>Add Shows</h2>
 
         <div formArrayName="shows">
             <ng-container *ngFor="let show of shows.controls; let i = index">
-              <div class="container border border-2 rounded-pill p-2 pt-4">
-                <div class="mb-3 input-group">
+              <div [formGroupName]="i" class="container border border-2 rounded-2 p-3 ">
+                <div class=" mb-2 input-group">
                   <span class="input-group-text">Start Date</span>
                   <input type="date" class="form-control" formControlName="startDate">
                   <span class="input-group-text">End Date</span>
                   <input type="date" class="form-control" formControlName="endDate">
-                  <span class="input-group-text">Timing</span>
-                  <input type="time" class="form-control" formControlName="timing">
+                  
                   <button *ngIf="i!=0" (click)="removeShow(i)" type="button">Remove Show</button>
                 </div>
+                <div class=" mb-3 input-group">
+                  <span class="input-group-text">Screen Number</span>
+                  <input type="number" class="form-control" formControlName="screenNo" placeholder="Screen Number">
+                  <span class="input-group-text">Number of Seats</span>
+                  <input type="number" class="form-control" formControlName="noOfSeats" placeholder="Number Of Seats">
+                </div>
+
+                <div class="input-group">
+                  <span class="input-group-text">Start Time</span>
+                  <input type="time" class="form-control" formControlName="startTime" >
+                  <span class="input-group-text">End Time</span>
+                  <input type="time" class="form-control" formControlName="endTime">
+                </div>
+                
               </div>
             </ng-container>
           </div>

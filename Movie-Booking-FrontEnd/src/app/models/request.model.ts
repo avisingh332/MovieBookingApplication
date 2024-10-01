@@ -1,10 +1,23 @@
+import { Time } from "@angular/common";
+
 export interface LoginRequest{
     
 }
-export interface GetMoviesResponseType{
-    id:string;
-    name: string;
-    description: string;
-    director:string;
-    genre:string;
-}
+
+export interface MovieCreateRequest{
+    name:string, 
+    directorName:string, 
+    genre:string, 
+    description:string, 
+    shows:[],
+};
+
+export interface ShowCreateRequest{
+    movieId:string, 
+    startDate:Date, 
+    endDate:Date, 
+    screenNo:number, 
+    noOfSeats:number,
+    startTime:Time, 
+    endTime:Time,
+};
