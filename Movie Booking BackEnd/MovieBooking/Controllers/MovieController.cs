@@ -69,5 +69,18 @@ namespace MovieBooking.Api.Controllers
                 Result = movies
             });
         }
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<ActionResult<ResponseDto>> GetAsync([FromRoute] Guid id)
+        {
+            MovieGetResponseDto movie = await _userService.GetMovieByIdAsync(id);
+            return Ok(new ResponseDto
+            {
+                IsSuccess = true, 
+                Message = "Successfully Fetched Movie", 
+                Result = movie
+            });
+        }
     }
 }

@@ -40,6 +40,7 @@ export class AddMoviesComponent implements OnInit {
       endTime:[''], 
       screenNo:[1], 
       noOfSeats:[100],
+      price:['']
     });
     this.shows.push(showGroup); // Add a new show group to the FormArray
   }
@@ -61,7 +62,7 @@ export class AddMoviesComponent implements OnInit {
       
 
       shows = shows.map((show:ShowCreateRequest)=> {
-        return { ...show, movieId: resp.id }; // Use : instead of =
+        return { ...show, movieId: resp.id }; 
       });
 
       this.showService.addShows(shows).subscribe({

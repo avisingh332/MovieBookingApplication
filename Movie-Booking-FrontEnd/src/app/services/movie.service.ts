@@ -11,6 +11,7 @@ import { catchError, map, Observable, switchMap, throwError } from 'rxjs';
 export class MovieService {
 
   constructor(private http:HttpClient) { }
+  
   baseApiUrl = environment.API_URL;
 
   addMovie(movie:MovieCreateRequest):Observable<any> {
@@ -28,6 +29,7 @@ export class MovieService {
       })
     );
   }
+
   getAllMovie(showDate: string): Observable<any> {
     return this.http.get<ApiResponse>(`${this.baseApiUrl}/api/Movie?showDate=${showDate}`).pipe(
       map((resp) => {
@@ -42,6 +44,22 @@ export class MovieService {
         return throwError(() => new Error('Error Fetching Movie'));  // Return an error observable
       })
     );
+  }
+
+  getMovie(id:string):Observable<any>{
+    return this.http.get<ApiResponse>(`${this.baseApiUrl}/api/Movie/${id}`).pipe(
+      map((resp) => {
+        if (resp.isSuccess) {
+          return resp.result;  // Pass the result to the component
+        } else {
+          throw new Error(resp.message);  // Handle errors
+        }
+      }),
+      catchError((error) => {
+        console.error(error);  // Log error in case of failure
+        return throwError(() => new Error('Error Fetching Movie'));  // Return an error observable
+      })
+    )
   }
   
 }

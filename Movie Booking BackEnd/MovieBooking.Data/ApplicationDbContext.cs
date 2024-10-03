@@ -16,7 +16,7 @@ namespace MovieBooking.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Show> Shows { get; set; }
-        public DbSet<UserBookings> UserBookings { get; set; }
+        public DbSet<UserBooking> UserBookings { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)

@@ -8,13 +8,17 @@ import { ApiResponse, LoginResponse } from '../models/response.model';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService  {
 
   private user = new BehaviorSubject<User|undefined>(undefined);
 
   baseApiUrl = environment.API_URL;
 
   constructor(private http:HttpClient) {
+    var user = this.getUser();
+    if(user!=undefined){
+      this.setUser(user);
+    }
   }
 
   user$():Observable<User|undefined>{

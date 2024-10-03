@@ -20,4 +20,10 @@ export interface ShowCreateRequest{
     noOfSeats:number,
     startTime:Time, 
     endTime:Time,
+    price:number,
 };
+export interface BookingCreateRequest{
+    showId:string, 
+    userId:string,
+    seatsBooked:number, 
+}

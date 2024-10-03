@@ -29,6 +29,10 @@ namespace MovieBooking.Data.Models
 
         [Required]
         public TimeSpan EndTime { get; set; }
+
+        [Required]
+        public decimal Price { get; set; }
+
         //Navigation Property 
         public virtual Movie Movie { get; set; }
 

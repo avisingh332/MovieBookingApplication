@@ -1,0 +1,53 @@
+.show-box {
+    background-color: #007bff;
+    /* Bootstrap primary color */
+    color: white;
+    /* Text color */
+    padding: 10px 10px;
+    /* Padding inside each box */
+    margin: 5px;
+    /* Space between boxes */
+    border-radius: 5px;
+    /* Rounded corners for boxes */
+    text-align: center;
+    /* Center text */
+    width: 90px;
+    /* Fixed width for boxes */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    /* Box shadow */
+    transition: transform 0.2s;
+    /* Transition effect for hover */
+}
+
+.show-box:hover {
+    transform: scale(1.05);
+    /* Slightly scale up on hover */
+}
+
+.number-list {
+    display: flex;
+    justify-content: space-between;
+    /* Distributes space evenly between items */
+    width: 100%;
+    /* Full width of the parent */
+   
+}
+
+.number-list span {
+    flex: 1; /* Makes each number take equal space */
+    text-align: center; /* Centers the text */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    padding: 10px; /* Optional padding */
+
+    border-radius: 50%;
+    transition: background-color 0.3s; /* Smooth background transition */
+}
+
+.number-list span.selected {
+    background-color: #3685D7; /* Background color for the selected number */
+    color: white; /* Text color for better contrast */
+}
+
+.number-list span.hover {
+    background-color: #A3C6E3; /* Light blue for hover effect */
+}

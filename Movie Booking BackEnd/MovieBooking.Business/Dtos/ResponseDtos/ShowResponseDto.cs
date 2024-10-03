@@ -16,5 +16,7 @@ namespace MovieBooking.Business.Dtos.ResponseDtos
         public int NoOfSeats { get; set; }
         public TimeSpan StartTime { get; set; }
         public TimeSpan EndTime { get; set; }
+
+        public decimal Price { get; set; }
     }
 }

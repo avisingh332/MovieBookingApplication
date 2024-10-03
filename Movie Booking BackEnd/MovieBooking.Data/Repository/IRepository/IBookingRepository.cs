@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace MovieBooking.Data.Repository.IRepository
 {
-    public interface IShowRepository: IRepository<Show>
+    public interface IBookingRepository: IRepository<UserBooking>
     {
-        Task UpdateAsync(Show show);
     }
 }

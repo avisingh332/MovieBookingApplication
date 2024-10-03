@@ -5,13 +5,17 @@ import { AddMoviesComponent } from './pages/admin/add-movies/add-movies.componen
 import { UserHomeComponent } from './pages/user/user-home/user-home.component';
 import { LoginComponent } from './pages/global/login/login.component';
 import { MovieComponent } from './pages/user/movie/movie.component';
+import { UserBookingsComponent } from './pages/user/user-bookings/user-bookings.component';
 
 const routes: Routes = [
-  {path:'admin-home', component: AdminHomeComponent},
+  {path:'admin', children:[
+    {path:'home', component:AdminHomeComponent}
+  ]},
   {path:'add-movie',component:AddMoviesComponent},
   {path:'user', children:[
     {path:'home', component:UserHomeComponent}, 
-    {path:'movie/:id', component:MovieComponent}
+    {path:'movie/:id', component:MovieComponent},
+    {path:'bookings', component:UserBookingsComponent}
   ]},
   {path:'login', component:LoginComponent}
 

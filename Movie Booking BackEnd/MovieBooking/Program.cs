@@ -52,6 +52,7 @@ builder.Services.AddScoped<IUserService, UserService>();
 //repository register in Di container
 builder.Services.AddScoped<IMovieRepository, MovieRepository>();
 builder.Services.AddScoped<IShowRepository, ShowRepository>();
+builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 
 var app = builder.Build();
 
@@ -64,11 +65,12 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseCors(policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+
+app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseRouting();
-app.MapControllers();
 
+app.MapControllers();
 app.Run();
 
 

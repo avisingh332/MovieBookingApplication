@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MovieBooking.Data.Models
 {
-    public class UserBookings
+    public class UserBooking
     {
         public Guid Id { get; set; }
 

@@ -20,8 +20,9 @@ export interface GetShowResponseType{
     endDate:Date, 
     screenNo:number, 
     noOfSeats:number,
-    startTime:Time, 
-    endTime:Time,
+    startTime:string, 
+    endTime:string,
+    price:number,
 }
 export interface LoginResponse{
     userId:string, 
@@ -30,4 +31,11 @@ export interface LoginResponse{
     jwtToken:string, 
     expiresIn:Date, 
     roles:string[],
+}
+
+export interface GetBookingResponse{
+    id:string, 
+    movieDetails:GetMoviesResponseType, 
+    showDetails: GetShowResponseType|null, 
+    seatsBooked:number
 }

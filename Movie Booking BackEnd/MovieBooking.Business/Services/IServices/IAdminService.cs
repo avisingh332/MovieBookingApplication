@@ -13,5 +13,6 @@ namespace MovieBooking.Business.Services.IServices
     {
         Task<MovieCreateResponseDto> AddMovie(MovieCreateRequestDto request);
         Task<ShowResponseDto> AddShow(ShowCreateRequestDto request);
+        Task<IEnumerable<BookingResponseDto>> GetAllBookingsAsync();
     }
 }

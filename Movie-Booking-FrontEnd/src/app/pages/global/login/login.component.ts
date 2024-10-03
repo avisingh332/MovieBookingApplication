@@ -32,12 +32,11 @@ export class LoginComponent implements OnInit {
           name: response.name,
           token : response.jwtToken, 
         });
-
         if(response.roles.includes('Admin')){
-          this.router.navigateByUrl('/admin-home')
+          this.router.navigateByUrl('/admin/home')
         }
         else{
-          this.router.navigateByUrl('/user-home');
+          this.router.navigateByUrl('/user/home');
         }
       },
       error:(err)=>{console.log(err);}

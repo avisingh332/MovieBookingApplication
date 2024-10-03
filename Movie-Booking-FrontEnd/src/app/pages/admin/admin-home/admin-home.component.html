@@ -35,7 +35,7 @@
                 <h4>Shows</h4>
                 <div class="show-timings">
                     <div class="show-box" *ngFor="let show of movieWithShow.shows ">
-                        {{show.startTime}}
+                        {{show.startTime| timeFormat }}
                     </div>
                 </div>
             </div>

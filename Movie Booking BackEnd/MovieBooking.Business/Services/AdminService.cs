@@ -2,6 +2,7 @@
 using MovieBooking.Business.Dtos.ResponseDtos;
 using MovieBooking.Business.Services.IServices;
 using MovieBooking.Data.Models;
+using MovieBooking.Data.Repository;
 using MovieBooking.Data.Repository.IRepository;
 using System;
 using System.Collections.Generic;
@@ -15,14 +16,16 @@ namespace MovieBooking.Business.Services
     {
         private IMovieRepository _movieRepo;
         private IShowRepository _showRepo;
-
-        public AdminService(IMovieRepository movieRepo, IShowRepository showRepo)
+        private readonly  IBookingRepository _bookingRepository;
+        public AdminService(IMovieRepository movieRepo, IShowRepository showRepo, IBookingRepository bookingRepository)
         {
             _movieRepo = movieRepo;
             _showRepo = showRepo;
+            _bookingRepository = bookingRepository;
         }
         public async Task<MovieCreateResponseDto> AddMovie(MovieCreateRequestDto request)
         {
+
             var id = Guid.NewGuid();
             Movie movie = new Movie
             {
@@ -55,6 +58,8 @@ namespace MovieBooking.Business.Services
 
         public async Task<ShowResponseDto> AddShow(ShowCreateRequestDto request)
         {
+            
+
             var id = Guid.NewGuid();
             TimeSpan startTime;
             TimeSpan.TryParse(request.StartTime, out startTime);
@@ -70,6 +75,7 @@ namespace MovieBooking.Business.Services
                 NoOfSeats = request.NoOfSeats,
                 StartTime =startTime, 
                 EndTime =endTime,
+                Price  = request.Price,
             };
             try
             {
@@ -85,6 +91,7 @@ namespace MovieBooking.Business.Services
                     NoOfSeats = showAdded.NoOfSeats,
                     StartTime = showAdded.StartTime, 
                     EndTime = showAdded.EndTime,
+                    Price = showAdded.Price,
                 };
                 return response;
             }
@@ -93,6 +100,23 @@ namespace MovieBooking.Business.Services
                 throw new Exception(ex.Message);
             }
         }
-        
+        public async Task<IEnumerable<BookingResponseDto>> GetAllBookingsAsync()
+        {
+            IEnumerable<UserBooking> bookings = await _bookingRepository.GetAllAsync()
+                    ?? throw new ApplicationException("Error Fetching Bookings");
+
+            IEnumerable<BookingResponseDto> response = bookings.Select(b =>
+            {
+                return new BookingResponseDto
+                {
+                    Id = b.Id,
+                    ShowId = b.ShowId,
+                    UserId = b.UserId,
+                };
+            });
+
+            return response;
+        }
+
     }
 }

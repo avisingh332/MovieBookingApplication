@@ -57,11 +57,11 @@ export class ShowService {
   //   })
   // }
 
-  getAllShows(movieId: string):Observable<any> {
+  getAllShows(movieId: string):Observable<GetShowResponseType[]> {
     return this.http.get<ApiResponse>(`${this.baseApiUrl}/api/Show?movieId=${movieId}`).pipe(
       map((resp) => {
         if (resp.isSuccess) {
-          return resp.result;
+          return resp.result as GetShowResponseType[];
         } else {
           throw new Error(resp.message);
         }
@@ -72,5 +72,20 @@ export class ShowService {
       })
     );
   }
+  // getShowById(movieId: string):Observable<GetShowResponseType> {
+  //   return this.http.get<ApiResponse>(`${this.baseApiUrl}/api/Show?movieId=${movieId}`).pipe(
+  //     map((resp) => {
+  //       if (resp.isSuccess) {
+  //         return resp.result as GetShowResponseType[];
+  //       } else {
+  //         throw new Error(resp.message);
+  //       }
+  //     }),
+  //     catchError((error) => {
+  //       console.error(error);
+  //       return throwError(() => new Error('Error Fetching Shows'));
+  //     })
+  //   );
+  // }
   
 }

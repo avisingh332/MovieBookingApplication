@@ -12,5 +12,11 @@ namespace MovieBooking.Business.Services.IServices
     {
         Task<IEnumerable<MovieGetResponseDto>> GetAllMoviesAsync(DateOnly? showDate = null);
         Task<IEnumerable<ShowResponseDto>> GetAllShowsAsync(DateOnly? showDate = null, Guid? movieId = null);
+
+        Task<ShowResponseDto> GetShowByIdAsync(Guid id);
+        Task<MovieGetResponseDto> GetMovieByIdAsync(Guid id);
+
+        Task<BookingResponseDto> CreateBookingAsync(BookingCreateRequestDto bookingCreateRequestDto);
+        Task<IEnumerable<BookingResponseDto>> GetAllBookingsAsync(string userId);
     }
 }
