@@ -1,64 +1,106 @@
 <div class="container">
-    <h2>Add New Movies</h2>
-    <form [formGroup]="moviesForm" action="" (submit)="handleSubmit()">
-        <div class="mb-3">
-            <label for="name" class="form-label">Movie Name</label>
-            <input type="text" formControlName = "name" class="form-control" id="name" />
-        </div>
-        <div class="mb-3">
-            <label for="director" class="form-label">Director Name</label>
-            <input type="text" formControlName = "director" class="form-control" id="director" />
-        </div>
+  <h2>Add New Movies</h2>
+  <form [formGroup]="moviesForm" (ngSubmit)="handleSubmit()">
 
-        <div class="mb-3">
-            <label for="genre" class="form-label">Genre</label>
-            <input type="textarea" formControlName = "genre" class="form-control" id="genre" />
-        </div>
+    <!-- Movie Name -->
+    <div class="mb-3">
+      <label for="name" class="form-label">Movie Name</label>
+      <input type="text" formControlName="name" class="form-control" id="name" />
+      <div *ngIf="moviesForm.get('name')?.invalid && moviesForm.get('name')?.touched" class="text-danger">
+        Movie name is required.
+      </div>
+    </div>
 
-        <div class="mb-3">
-            <label for="description" class="form-label">Description</label>
-            <textarea type="textarea" formControlName = "description" class="form-control" id="description" ></textarea>
-        </div>
+    <!-- Director Name -->
+    <div class="mb-3">
+      <label for="director" class="form-label">Director Name</label>
+      <input type="text" formControlName="director" class="form-control" id="director" />
+      <div *ngIf="moviesForm.get('director')?.invalid && moviesForm.get('director')?.touched" class="text-danger">
+        Director name is required.
+      </div>
+    </div>
 
-       
+    <!-- Genre -->
+    <div class="mb-3">
+      <label for="genre" class="form-label">Genre</label>
+      <input type="textarea" formControlName="genre" class="form-control" id="genre" />
+      <div *ngIf="moviesForm.get('genre')?.invalid && moviesForm.get('genre')?.touched" class="text-danger">
+        Genre is required.
+      </div>
+    </div>
 
-        <h2>Add Shows</h2>
+    <!-- Description -->
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea formControlName="description" class="form-control" id="description"></textarea>
+      <div *ngIf="moviesForm.get('description')?.invalid && moviesForm.get('description')?.touched" class="text-danger">
+        Description is required.
+      </div>
+    </div>
 
-        <div formArrayName="shows">
-            <ng-container *ngFor="let show of shows.controls; let i = index">
-              <div [formGroupName]="i" class="container border border-2 rounded-2 p-3 ">
-                <div class=" mb-2 input-group">
-                  <span class="input-group-text">Start Date</span>
-                  <input type="date" class="form-control" formControlName="startDate">
-                  <span class="input-group-text">End Date</span>
-                  <input type="date" class="form-control" formControlName="endDate">
-                  
-                  <button *ngIf="i!=0" (click)="removeShow(i)" type="button">Remove Show</button>
-                </div>
-                <div class=" mb-3 input-group">
-                  <span class="input-group-text">Screen Number</span>
-                  <input type="number" class="form-control" formControlName="screenNo" placeholder="Screen Number">
-                  <span class="input-group-text">Number of Seats</span>
-                  <input type="number" class="form-control" formControlName="noOfSeats" placeholder="Number Of Seats">
-                </div>
+    <h2>Add Shows</h2>
 
-                <div class="input-group">
-                  <span class="input-group-text">Start Time</span>
-                  <input type="time" class="form-control" formControlName="startTime" >
-                  <span class="input-group-text">End Time</span>
-                  <input type="time" class="form-control" formControlName="endTime">
-                  <span class="input-group-text">Price</span>
-                  <input type="number" class="form-control" formControlName="price">
-                </div>
-                
-              </div>
-            </ng-container>
+    <div formArrayName="shows">
+      <ng-container *ngFor="let show of shows.controls; let i = index">
+        <div [formGroupName]="i" class="container border border-2 rounded-2 p-3">
+
+          <div class="mb-2 input-group">
+            <span class="input-group-text">Start Date</span>
+            <input type="date" class="form-control" formControlName="startDate" [min]="minDate">
+            <span class="input-group-text">End Date</span>
+            <input type="date" class="form-control" formControlName="endDate">
+            <button *ngIf="i != 0" (click)="removeShow(i)" type="button">Remove Show</button>
           </div>
-        
-          <button (click)="addShow()" type="button">Add Show</button>
+          <div *ngIf="show.get('startDate')?.invalid && show.get('startDate')?.touched" class="text-danger">
+            Start date must be a future date.
+          </div>
+          <div *ngIf="(show.get('endDate')?.hasError('endDateInvalid')|| show.get('endDate')?.invalid )&& show.get('endDate')?.touched"
+            class="text-danger ms-auto">
+            End date is Required must be greater than or equal to start date.
+          </div>
 
-        <div class="d-flex justify-content-center"><button  class="btn btn-secondary">Submit</button></div>
+          <div class="mb-3 input-group">
+            <span class="input-group-text">Screen Number</span>
+            <input type="number" class="form-control" formControlName="screenNo">
+            <span class="input-group-text">Number of Seats</span>
+            <input type="number" class="form-control" formControlName="noOfSeats">
+          </div>
 
-    </form>
-    
+          <div *ngIf="show.get('screenNo')?.invalid && show.get('screenNo')?.touched" class="text-danger">
+            Screen number is required and must be greater than 0.
+          </div>
+          <div *ngIf="show.get('noOfSeats')?.invalid && show.get('noOfSeats')?.touched" class="text-danger">
+            Number of seats must be greater than 0.
+          </div>
+
+          <div class="input-group">
+            <span class="input-group-text">Start Time</span>
+            <input type="time" class="form-control" formControlName="startTime">
+
+            <span class="input-group-text">End Time</span>
+            <input type="time" class="form-control" formControlName="endTime">
+
+            <span class="input-group-text">Price</span>
+            <input type="number" class="form-control" formControlName="price">
+
+          </div>
+          <div *ngIf="show.get('startTime')?.invalid && show.get('startTime')?.touched" class="text-danger">
+            Start time is required.
+          </div>
+          <div *ngIf="(show.get('endTime')?.hasError('endTimeInvalid') || show.get('endTime')?.invalid) && show.get('endTime')?.touched"
+            class="text-danger">
+            End time is required must be greater than start time.
+          </div>
+          <div *ngIf="show.get('price')?.invalid && show.get('price')?.touched" class="text-danger">
+            Price is required and must be greater than 0.
+          </div>
+        </div>
+      </ng-container>
+    </div>
+
+    <button (click)="addShow()" type="button">Add Show</button>
+    <div class="d-flex justify-content-center mt-3">
+      <button class="btn btn-secondary" >Submit</button>
+    </div>
+  </form>
 </div>

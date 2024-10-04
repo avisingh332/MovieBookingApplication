@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MovieBooking.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+512716c3d4fbcf5447114b8d64e6d0ddd3c7aa99")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ed48f34e35fe11925373628e94f7e1f93858b9c1")]
 [assembly: System.Reflection.AssemblyProductAttribute("MovieBooking.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MovieBooking.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
