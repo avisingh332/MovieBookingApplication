@@ -1,5 +1,5 @@
 import { Component, OnInit, ɵsetAlternateWeakRefImpl } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/generic.model';
 import { BookingCreateRequest } from 'src/app/models/request.model';
@@ -27,6 +27,7 @@ export class MovieComponent implements OnInit {
 
   // movie: GetMoviesResponseType|undefined;
   constructor(private route: ActivatedRoute, private movieService: MovieService,
+              private router:Router,
               private bookingService:BookingService,
               private authService:AuthService,
               private showService: ShowService) {
@@ -62,6 +63,9 @@ export class MovieComponent implements OnInit {
   }
 
   confirmBooking() {
+    if(!this.user?.roles.includes('User')){
+      this.router.navigate(['/login']);
+    }
     if(this.selectedShow && this.selectedNumber && this.user ){
       let payload = JSON.parse(atob(this.user.token.split('.')[1]));
       let requestObj:BookingCreateRequest={

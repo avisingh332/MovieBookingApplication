@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵsetAlternateWeakRefImpl } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { ShowCreateRequest } from 'src/app/models/request.model';
 import { MovieService } from 'src/app/services/movie.service';
@@ -98,7 +98,6 @@ export class AddMoviesComponent implements OnInit {
       next: (resp) => {
         console.log(resp, " Movie Added Successfully!!!");
 
-
         shows = shows.map((show: ShowCreateRequest) => {
           return { ...show, movieId: resp.id };
         });
@@ -106,6 +105,7 @@ export class AddMoviesComponent implements OnInit {
         this.showService.addShows(shows).subscribe({
           next: (resp) => {
             console.log(resp);
+            alert("Movie and Shows Added Successfully!!!!");
           },
           error: (err) => {
             console.log(err);
