@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MovieBooking.Business.Dtos.RequestDtos;
 using MovieBooking.Business.Dtos.ResponseDtos;
+using MovieBooking.Business.Extensions;
 using MovieBooking.Business.Services.IServices;
 using MovieBooking.Data.Models;
 using System.Security.Claims;
@@ -21,9 +22,12 @@ namespace MovieBooking.Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles ="User")]
         public async Task<ActionResult<ResponseDto>> CreateAsync([FromBody] BookingCreateRequestDto request)
         {
-            var response = await _userService.CreateBookingAsync(request);
+            var userId = User.GetUserId();
+            if (string.IsNullOrEmpty(userId)) return ValidationProblem("Invalid User"); 
+            var response = await _userService.CreateBookingAsync(request, userId);
             return Ok(new ResponseDto
             {
                 IsSuccess = true,
@@ -35,6 +39,7 @@ namespace MovieBooking.Api.Controllers
                     UserId = response.UserId,
                     MovieDetails = response.MovieDetails,
                     ShowDetails = response.ShowDetails,
+                    BookingDate = response. BookingDate, 
                 }
             });
         }

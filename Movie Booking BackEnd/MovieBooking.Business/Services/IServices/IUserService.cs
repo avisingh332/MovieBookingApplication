@@ -16,7 +16,7 @@ namespace MovieBooking.Business.Services.IServices
         Task<ShowResponseDto> GetShowByIdAsync(Guid id);
         Task<MovieGetResponseDto> GetMovieByIdAsync(Guid id);
 
-        Task<BookingResponseDto> CreateBookingAsync(BookingCreateRequestDto bookingCreateRequestDto);
+        Task<BookingResponseDto> CreateBookingAsync(BookingCreateRequestDto bookingCreateRequestDto, string userId);
         Task<IEnumerable<BookingResponseDto>> GetAllBookingsAsync(string userId);
     }
 }

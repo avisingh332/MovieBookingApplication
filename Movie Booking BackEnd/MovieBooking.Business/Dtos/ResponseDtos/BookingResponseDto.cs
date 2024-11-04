@@ -13,7 +13,7 @@ namespace MovieBooking.Business.Dtos.RequestDtos
         public Guid ShowId { get; set; }
         public string UserId { get; set; }
         public int SeatsBooked { get; set; }
-        
+        public DateOnly BookingDate { get; set; }
         public ShowResponseDto? ShowDetails { get; set; }
         public MovieGetResponseDto? MovieDetails { get; set; }
 

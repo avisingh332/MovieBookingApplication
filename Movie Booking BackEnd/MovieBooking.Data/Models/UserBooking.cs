@@ -18,7 +18,7 @@ namespace MovieBooking.Data.Models
         public Guid ShowId { get; set; }
         [Required]
         public int SeatsBooked { get; set; }
-
+        public DateTime BookingDate { get; set; }
         // Navigation Properties
         public virtual Show Show{ get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }

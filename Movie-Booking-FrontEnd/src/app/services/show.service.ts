@@ -14,8 +14,8 @@ export class ShowService {
   baseApiUrl = environment.API_URL;
 
   addShows(shows: ShowCreateRequest[]): Observable<any> {
-    console.log("Shows to Add are: ");
-    console.log(shows);
+    // console.log("Shows to Add are: ");
+    // console.log(shows);
     const request = shows.map(show =>
       this.http.post<ApiResponse>(`${this.baseApiUrl}/api/Show`, show)
     );

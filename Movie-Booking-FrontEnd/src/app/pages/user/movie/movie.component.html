@@ -57,6 +57,7 @@
                     <p *ngIf="selectedShow!=undefined" > Show Time :{{selectedShow.startTime | timeFormat}}</p>
                     <p>Price: {{selectedShow?.price}} Rs </p>
                     <p>Screen No: {{ selectedShow?.screenNo }}</p>
+                    <p>Booking Date: {{this.selectedDate| dateFormat }}</p>
                     <p>Select Seats</p>
                     <div class="number-list">
                         <span *ngFor="let number of numbers" 

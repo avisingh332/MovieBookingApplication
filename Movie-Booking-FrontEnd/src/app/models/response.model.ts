@@ -37,5 +37,6 @@ export interface GetBookingResponse{
     id:string, 
     movieDetails:GetMoviesResponseType, 
     showDetails: GetShowResponseType|null, 
-    seatsBooked:number
+    seatsBooked:number, 
+    bookingDate:Date,
 }

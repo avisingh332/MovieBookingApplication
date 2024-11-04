@@ -16,6 +16,7 @@ import { ShowService } from 'src/app/services/show.service';
 })
 export class MovieComponent implements OnInit {
   user:User|undefined;
+  selectedDate:string = "";
   movieId: string | undefined;
   movie$: Observable<GetMoviesResponseType> | undefined;
   shows$: Observable<GetShowResponseType[]> | undefined;
@@ -44,7 +45,13 @@ export class MovieComponent implements OnInit {
         }
       },
     });
-
+    this.route.queryParams
+      .subscribe((params:any) => {
+        console.log("Selected Date: ")
+        console.log(params.selectedDate); 
+        this.selectedDate = params.selectedDate;
+      }
+    );
     this.authService.user$().subscribe({
       next:(userDetails)=>{
         this.user = userDetails;
@@ -67,12 +74,13 @@ export class MovieComponent implements OnInit {
       this.router.navigate(['/login']);
     }
     if(this.selectedShow && this.selectedNumber && this.user ){
-      let payload = JSON.parse(atob(this.user.token.split('.')[1]));
       let requestObj:BookingCreateRequest={
         showId: this.selectedShow.id, 
-        userId: payload.nameid,
         seatsBooked: this.selectedNumber,
+        bookingDate: this.selectedDate,
       }
+      console.log(requestObj);
+      // return;
       this.bookingService.AddBooking(requestObj).subscribe({
         next:(resp)=>{
           alert("Movie Booked Successfully")

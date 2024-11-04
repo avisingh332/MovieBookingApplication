@@ -23,7 +23,7 @@ const routes: Routes = [
       { path: 'add-movie', component: AddMoviesComponent, canActivate: [authGuard] },
     ]
   },
-
+  {path:'**', component:LoginComponent},
   {
     path: 'user', children: [
       { path: 'home', component: UserHomeComponent },

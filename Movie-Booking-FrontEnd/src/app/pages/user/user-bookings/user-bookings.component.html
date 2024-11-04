@@ -13,7 +13,7 @@
       <tbody>
         <tr *ngFor="let booking of userBookings">
           <td>{{ booking.movieDetails.name }}</td>
-          <td>{{ booking.showDetails?.startDate }}</td>
+          <td>{{ booking.bookingDate| dateFormat }}</td>
           <td *ngIf="booking.showDetails">{{ booking.showDetails.startTime | timeFormat }}</td>
           <td>{{ booking.showDetails?.screenNo }}</td>
           <td>{{booking.seatsBooked}}</td>

@@ -35,6 +35,15 @@ export class UserHomeComponent implements OnInit {
 
   onDayPick($event:any) {
     this.selectedDate = $event.target.datePicked;
+    const today = new Date();
+    const selectedDateTocmp = new Date(this.selectedDate);
+    today.setHours(0, 0, 0, 0);
+    selectedDateTocmp.setHours(0, 0, 0, 0);
+    if(selectedDateTocmp < today){
+      alert("Select Date Starting from Today!!!");
+      location.reload();
+      return;
+    }
     this.loadMovies();
   }
   trimString(str:string){

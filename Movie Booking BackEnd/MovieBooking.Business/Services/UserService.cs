@@ -102,7 +102,7 @@ namespace MovieBooking.Business.Services
             };
         }
 
-        public async Task<BookingResponseDto> CreateBookingAsync( BookingCreateRequestDto request)
+        public async Task<BookingResponseDto> CreateBookingAsync( BookingCreateRequestDto request, string userId)
         {
 
             var show = await _showRepo.GetAsync(s => s.Id == request.ShowId)
@@ -119,8 +119,9 @@ namespace MovieBooking.Business.Services
             {
                 Id = id,
                 ShowId = request.ShowId,
-                UserId = request.UserId,
+                UserId = userId,
                 SeatsBooked = request.SeatsBooked,
+                BookingDate = request.BookingDate.ToDateTime(TimeOnly.MinValue)
             };
             await _bookingRepository.AddAsync(userBooking);
 
@@ -137,6 +138,7 @@ namespace MovieBooking.Business.Services
                 UserId = userBookingAdded.UserId,
                 ShowDetails = showDetails,
                 MovieDetails = movieDetails,
+                BookingDate = DateOnly.FromDateTime(userBookingAdded.BookingDate)
             };
         }
 
@@ -157,6 +159,7 @@ namespace MovieBooking.Business.Services
                     SeatsBooked = b.SeatsBooked,
                     ShowDetails = showDetails,
                     MovieDetails = movieDetails,
+                    BookingDate = DateOnly.FromDateTime(b.BookingDate)
                 };
             });
 

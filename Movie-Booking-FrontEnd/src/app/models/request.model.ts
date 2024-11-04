@@ -24,6 +24,6 @@ export interface ShowCreateRequest{
 };
 export interface BookingCreateRequest{
     showId:string, 
-    userId:string,
     seatsBooked:number, 
+    bookingDate:string,
 }

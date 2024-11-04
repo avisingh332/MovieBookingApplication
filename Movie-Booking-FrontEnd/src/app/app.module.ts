@@ -14,6 +14,7 @@ import { MovieComponent } from './pages/user/movie/movie.component';
 import { TimeFormatPipe } from './pipes/time-format.pipe';
 import { UserBookingsComponent } from './pages/user/user-bookings/user-bookings.component';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { DateFormatPipe } from './pipes/date-format.pipe';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,9 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
     UserHomeComponent,
     LoginComponent,
     MovieComponent, 
-    TimeFormatPipe, UserBookingsComponent
+    TimeFormatPipe, 
+    DateFormatPipe,
+    UserBookingsComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,8 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
     FormsModule,
   ],
   exports:[
-    TimeFormatPipe
+    TimeFormatPipe, 
+    DateFormatPipe,
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
   providers: [
